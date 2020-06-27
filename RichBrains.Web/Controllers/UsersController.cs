@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using RichBrains.Logic.Interfaces;
 using RichBrains.Logic.Models;
@@ -43,7 +44,7 @@ namespace RichBrains.Web.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, UserDto user)
+        public IActionResult Put([CustomizeValidator(RuleSet = "UserPreValidation")] Guid id, UserDto user)
         {
             if (id != user.Id)
             {
@@ -59,7 +60,7 @@ namespace RichBrains.Web.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<UserDto>> Post(UserDto user)
+        public async Task<ActionResult<UserDto>> Post([CustomizeValidator(RuleSet = "UserPreValidation")] UserDto user)
         {
             var createdUser = await _userService.Create(user);
             return CreatedAtAction("GetUserDb", new { id = createdUser.Id }, createdUser);
