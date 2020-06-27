@@ -19,7 +19,7 @@ namespace RichBrains.Logic.Validators
                     .EmailAddress()
                     .WithMessage("Invalid email");
                 RuleFor(u => u.Phone)
-                    .Matches(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$")
+                    .Matches(@"^\+[0-9]{7,}$")
                     .WithMessage("Invalid phone");
             });
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RichBrains.Logic.Interfaces;
 using RichBrains.Logic.Models;
@@ -43,8 +44,9 @@ namespace RichBrains.Web.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize]
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id,[CustomizeValidator(RuleSet = "UserPreValidation")] UserDto user)
+        public IActionResult Put(Guid id, [CustomizeValidator(RuleSet = "UserPreValidation")] UserDto user)
         {
             if (id != user.Id)
             {
@@ -67,6 +69,7 @@ namespace RichBrains.Web.Controllers
         }
 
         // DELETE: api/Users/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<UserDto>> Delete(Guid id)
         {
