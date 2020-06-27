@@ -31,14 +31,14 @@ namespace RichBrains.Web
             services.ConfigureDbContext();
             services.AddSwaggerDocument();
             services.AddControllers();
-            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc(cfg => cfg.EnableEndpointRouting = false)
-                .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddFluentValidation(cfg =>
                     {
                         cfg.RegisterValidatorsFromAssemblyContaining<UserValidator>();
                         cfg.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                     });
+            services.AddRouting(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +56,7 @@ namespace RichBrains.Web
             app.UseAuthorization();
 
             app.UseMvc();
+
         }
     }
 }

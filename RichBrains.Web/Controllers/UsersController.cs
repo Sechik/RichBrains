@@ -44,7 +44,7 @@ namespace RichBrains.Web.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public IActionResult Put([CustomizeValidator(RuleSet = "UserPreValidation")] Guid id, UserDto user)
+        public IActionResult Put(Guid id,[CustomizeValidator(RuleSet = "UserPreValidation")] UserDto user)
         {
             if (id != user.Id)
             {
@@ -63,7 +63,7 @@ namespace RichBrains.Web.Controllers
         public async Task<ActionResult<UserDto>> Post([CustomizeValidator(RuleSet = "UserPreValidation")] UserDto user)
         {
             var createdUser = await _userService.Create(user);
-            return CreatedAtAction("GetUserDb", new { id = createdUser.Id }, createdUser);
+            return Ok(createdUser);
         }
 
         // DELETE: api/Users/5
