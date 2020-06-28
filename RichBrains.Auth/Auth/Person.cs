@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RichBrains.Web.Auth
+﻿namespace RichBrains.Auth
 {
     public class Person
     {

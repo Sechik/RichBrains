@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using RichBrains.Logic.Validators;
-using RichBrains.Web.Auth;
+using RichBrains.Auth;
 using RichBrains.Web.Extensions;
 
 namespace RichBrains.Web

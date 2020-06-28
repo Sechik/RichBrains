@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RichBrains.Auth\RichBrains.Auth.csproj" />
     <ProjectReference Include="..\RichBrains.Logic\RichBrains.Logic.csproj" />
   </ItemGroup>
 
