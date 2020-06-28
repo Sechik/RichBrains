@@ -52,7 +52,7 @@ namespace RichBrains.Web
                         ValidateIssuer = true,
                         // строка, представляющая издателя
                         ValidIssuer = AuthOptions.ISSUER,
-
+                        
                         // будет ли валидироваться потребитель токена
                         ValidateAudience = true,
                         // установка потребителя токена
@@ -66,7 +66,10 @@ namespace RichBrains.Web
                         ValidateIssuerSigningKey = true,
                     };
                 });
+
+            services.AddCors();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -81,6 +84,8 @@ namespace RichBrains.Web
             app.UseRouting();
 
             app.UseAuthentication();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseMvc();
 
